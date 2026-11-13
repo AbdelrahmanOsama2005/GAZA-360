@@ -1,23 +1,22 @@
 # GAZA 360
-## Humanitarian Impact & Recovery Intelligence Platform
+## Humanitarian Data Intelligence Platform
 
-**GAZA 360** is an end-to-end Data Analytics project focused on analyzing the humanitarian impact and recovery challenges in the Gaza Strip following October 7, 2023.
+**GAZA 360** is an end-to-end Data Engineering, Analytics, and Business Intelligence project designed to transform humanitarian datasets related to Gaza into structured, documented, and interactive insights.
 
-The project aims to transform reliable humanitarian, infrastructure, healthcare, and economic data into meaningful insights that support data-driven understanding of the crisis and recovery needs.
+The platform brings together data collection, cleaning, transformation, SQL data modeling, data quality checks, and Power BI dashboards.
 
-> Project Status: 🚧 In Progress
+**Project Status:** 🚧 In Progress
 
 ---
 
 ## 🎯 Project Objectives
 
-- Analyze humanitarian impact and population displacement.
-- Examine infrastructure damage across the Gaza Strip.
-- Monitor humanitarian aid and accessibility.
-- Assess the impact on healthcare services and facilities.
-- Explore economic losses and recovery requirements.
-- Compare impact indicators across Gaza governorates.
-- Develop interactive dashboards to communicate key findings.
+- Analyze humanitarian impact indicators over time.
+- Explore demographic distributions in available datasets.
+- Monitor healthcare facility status.
+- Organize data into analytical models.
+- Build interactive dashboards for data exploration.
+- Document data sources, transformations, and limitations.
 
 ---
 
@@ -25,57 +24,109 @@ The project aims to transform reliable humanitarian, infrastructure, healthcare,
 
 | Technology | Purpose |
 |---|---|
-| Python | Data collection and analysis |
-| Pandas & NumPy | Data manipulation |
-| Matplotlib & Seaborn | Data visualization |
-| Plotly | Interactive visualizations |
-| GeoPandas | Geospatial analysis |
-| SQL Server | Data storage and querying |
-| Power BI | Interactive dashboards |
-| Jupyter Notebook | Exploratory analysis |
+| Python | Data collection and transformation |
+| Pandas | Data cleaning and manipulation |
+| SQL Server 2022 | Data storage and analytical modeling |
+| SQL | Data transformation and quality checks |
+| Power BI | Interactive dashboards and reporting |
+| DAX | Analytical measures and KPIs |
+| Git & GitHub | Version control and project management |
 
 ---
 
-## 🏗️ Project Architecture
+## 🏗️ Data Architecture
 
-The project follows a structured data workflow:
-
-1. Data Collection
-2. Raw Data Storage
-3. Data Cleaning & Transformation
-4. SQL Database Integration
-5. Exploratory Data Analysis (EDA)
-6. Geospatial Analysis
-7. Dashboard Development
-8. Documentation & Reporting
-
----
-
-## 📂 Project Structure
+The project follows a layered data architecture:
 
 ```text
-GAZA_360/
+Data Sources
+     |
+     v
+    RAW
+     |
+     v
+  STAGING
+     |
+     v
+Cleaning & Transformation
+     |
+     v
+    GOLD
+     |
+     v
+  Power BI
+     |
+     v
+Interactive Dashboards
+```
+
+The Gold layer contains fact and dimension tables designed for analytical reporting.
+
+The data model uses a Fact Constellation (Galaxy Schema), where multiple fact tables share common dimensions.
+
+---
+
+## 📊 Implemented Components
+
+### 1. Data Engineering
+- Python-based data collection.
+- CSV processing and transformation.
+- Structured data organization.
+- SQL analytical data model.
+- Data quality audit checks.
+
+### 2. SQL Data Model
+
+Implemented analytical tables include:
+
+**Fact Tables**
+- `fact_daily_casualties`
+- `fact_identified_deaths`
+- `fact_population`
+
+**Dimension Tables**
+- `dim_date`
+- `dim_age`
+- `dim_sex`
+- `dim_update_batch`
+
+### 3. Power BI Dashboards
+
+The project includes four dashboard pages:
+
+1. **Executive Overview** – High-level humanitarian indicators.
+2. **Temporal Analysis** – Daily and monthly trends.
+3. **Demographic Analysis** – Age and sex distributions.
+4. **Data & Methodology** – Sources, data quality, and limitations.
+
+---
+
+## 📂 Repository Structure
+
+```text
+GAZA-360/
 │
 ├── data/
 │   ├── raw/
 │   ├── staging/
 │   └── processed/
 │
-├── notebooks/
-│
 ├── python/
 │   ├── data_collection/
-│   ├── cleaning/
-│   └── analysis/
+│   └── cleaning/
 │
 ├── sql/
-│   ├── database/
-│   ├── tables/
-│   └── queries/
 │
 ├── power_bi/
 │
+├── notebooks/
+│
 ├── documentation/
+│   ├── data_dictionary.md
+│   ├── data_sources.md
+│   ├── data_source_inventory.md
+│   ├── data_transformation_rules.md
+│   └── sql_data_quality_report.md
 │
 ├── .gitignore
 ├── README.md
@@ -84,67 +135,57 @@ GAZA_360/
 
 ---
 
-## 📊 Key Analytical Dimensions
-
-- Humanitarian Impact
-- Population Displacement
-- Infrastructure Damage
-- Healthcare Services
-- Humanitarian Aid
-- Economic Impact
-- Geographic Distribution
-- Recovery Priorities
-
----
-
-## 📚 Data Sources
-
-The project will prioritize credible and documented sources, including:
-
-- United Nations Office for the Coordination of Humanitarian Affairs (OCHA)
-- United Nations Satellite Centre (UNOSAT)
-- World Bank
-- United Nations agencies and humanitarian data platforms
-
-All datasets will be documented with their original sources, publication dates, observation periods, and relevant limitations.
-
----
-
 ## 🔍 Data Quality & Methodology
 
-- Preserve original raw datasets.
-- Document data cleaning and transformation processes.
+The project emphasizes transparent and documented data handling:
+
+- Document original data sources.
+- Preserve distinctions between different datasets.
+- Apply documented cleaning and transformation rules.
+- Perform technical data quality checks.
 - Distinguish reported figures from estimates.
-- Never interpret missing values as zero.
-- Maintain source attribution for analytical findings.
-- Document assumptions and methodological limitations.
+- Document assumptions and analytical limitations.
+- Avoid interpreting missing values as zero.
+
+**Important:** Technical validation does not necessarily mean independent verification of the original reported figures.
 
 ---
 
 ## 🚀 Development Roadmap
 
 - [x] Project structure setup
-- [x] Python virtual environment setup
-- [x] Required libraries installation
-- [x] VS Code interpreter configuration
-- [x] Git ignore configuration
-- [ ] Data source research and selection
-- [ ] Data collection
-- [ ] Data cleaning and validation
-- [ ] SQL Server database design
-- [ ] Exploratory Data Analysis
-- [ ] Geospatial Analysis
-- [ ] Power BI Dashboard Development
-- [ ] Final Documentation
+- [x] Python environment setup
+- [x] Data collection and cleaning scripts
+- [x] Data source documentation
+- [x] SQL Gold analytical model
+- [x] Data quality audit
+- [x] Four Power BI dashboard pages
+- [x] Git and GitHub setup
+- [ ] Add SQL scripts to repository
+- [ ] Add Power BI project file and dashboard screenshots
+- [ ] Complete end-to-end pipeline documentation
+- [ ] Final portfolio presentation
 
 ---
 
-## 👨‍💻 Project Development
+## 📚 Documentation
 
-Developed as a professional Data Analytics portfolio project.
+Detailed project documentation is available in the `documentation/` directory, including:
 
-**Focus:** Data Analytics | Python | SQL | Power BI | Geospatial Analytics
+- Data Sources
+- Data Source Inventory
+- Data Dictionary
+- Data Transformation Rules
+- SQL Data Quality Report
 
 ---
 
-*Building insights from data, one step at a time.*
+## 👨‍💻 Project Focus
+
+**Data Engineering | Data Analytics | SQL Server | Python | Power BI | Business Intelligence**
+
+Developed as a practical portfolio project demonstrating data pipeline development, analytical data modeling, and business intelligence reporting.
+
+---
+
+*Turning humanitarian data into structured insights.*
