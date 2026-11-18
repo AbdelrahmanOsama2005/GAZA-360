@@ -1,191 +1,150 @@
 # GAZA 360
 ## Humanitarian Data Intelligence Platform
 
-**GAZA 360** is an end-to-end Data Engineering, Analytics, and Business Intelligence project designed to transform humanitarian datasets related to Gaza into structured, documented, and interactive insights.
-
-The platform brings together data collection, cleaning, transformation, SQL data modeling, data quality checks, and Power BI dashboards.
-
-**Project Status:** 🚧 In Progress
+An end-to-end Data Engineering and Business Intelligence project designed to organize, transform, analyze, and visualize humanitarian data related to Gaza.
 
 ---
 
-## 🎯 Project Objectives
+## Project Overview
 
-- Analyze humanitarian impact indicators over time.
-- Explore demographic distributions in available datasets.
-- Monitor healthcare facility status.
-- Organize data into analytical models.
-- Build interactive dashboards for data exploration.
-- Document data sources, transformations, and limitations.
+GAZA 360 transforms raw humanitarian datasets into structured analytical data and interactive Power BI dashboards.
 
----
+The project focuses on:
+- Daily casualties analysis.
+- Identified deaths by age and sex.
+- Demographic and population analysis.
+- Data quality and methodology documentation.
+- Interactive reporting and trend analysis.
 
-## 🛠️ Technology Stack
-
-| Technology | Purpose |
-|---|---|
-| Python | Data collection and transformation |
-| Pandas | Data cleaning and manipulation |
-| SQL Server 2022 | Data storage and analytical modeling |
-| SQL | Data transformation and quality checks |
-| Power BI | Interactive dashboards and reporting |
-| DAX | Analytical measures and KPIs |
-| Git & GitHub | Version control and project management |
-
----
-
-## 🏗️ Data Architecture
-
-The project follows a layered data architecture:
+## Architecture
 
 ```text
 Data Sources
      |
      v
-    RAW
+  BRONZE
+  Raw Data
      |
      v
-  STAGING
+  SILVER
+  Cleaning & Transformation
      |
      v
-Cleaning & Transformation
+   GOLD
+  Analytical Data Model
      |
      v
-    GOLD
-     |
-     v
-  Power BI
-     |
-     v
-Interactive Dashboards
+  POWER BI
+  Interactive Dashboards
 ```
 
-The Gold layer contains fact and dimension tables designed for analytical reporting.
+## Technology Stack
 
-The data model uses a Fact Constellation (Galaxy Schema), where multiple fact tables share common dimensions.
+| Technology | Purpose |
+|---|---|
+| SQL Server 2022 | Database and data transformation |
+| SQL | Data extraction, cleaning and modeling |
+| Python | Data collection and processing |
+| Power BI | Data modeling and visualization |
+| Git & GitHub | Version control and documentation |
 
----
+## Data Model
 
-## 📊 Implemented Components
+The Gold layer contains 11 analytical tables:
 
-### 1. Data Engineering
-- Python-based data collection.
-- CSV processing and transformation.
-- Structured data organization.
-- SQL analytical data model.
-- Data quality audit checks.
+- Fact tables:
+  - fact_daily_casualties
+  - fact_identified_deaths
+  - fact_population
 
-### 2. SQL Data Model
+- Dimension tables:
+  - dim_date
+  - dim_age
+  - dim_age_band
+  - dim_sex
+  - dim_update_batch
 
-Implemented analytical tables include:
+- Summary tables:
+  - age_sex_summary
+  - monthly_summary
+  - rates_by_age_sex
 
-**Fact Tables**
-- `fact_daily_casualties`
-- `fact_identified_deaths`
-- `fact_population`
+The database also includes Bronze and Silver layers for raw and transformed data.
 
-**Dimension Tables**
-- `dim_date`
-- `dim_age`
-- `dim_sex`
-- `dim_update_batch`
+## Power BI Dashboard
 
-### 3. Power BI Dashboards
+The dashboard contains four analytical pages.
 
-The project includes four dashboard pages:
+### 1. Executive Overview
+![Executive Overview](power_bi/screenshots/01_executive_overview.jpeg)
 
-1. **Executive Overview** – High-level humanitarian indicators.
-2. **Temporal Analysis** – Daily and monthly trends.
-3. **Demographic Analysis** – Age and sex distributions.
-4. **Data & Methodology** – Sources, data quality, and limitations.
+### 2. Temporal Analysis
+![Temporal Analysis](power_bi/screenshots/02_temporal_analysis.jpeg)
 
----
+### 3. Demographic Analysis
+![Demographic Analysis](power_bi/screenshots/03_demographic_analysis.jpeg)
 
-## 📂 Repository Structure
+### 4. Data & Methodology
+![Data and Methodology](power_bi/screenshots/04_data_methodology.jpeg)
+
+## Repository Structure
 
 ```text
 GAZA-360/
-│
-├── data/
-│   ├── raw/
-│   ├── staging/
-│   └── processed/
-│
-├── python/
-│   ├── data_collection/
-│   └── cleaning/
-│
-├── sql/
-│
-├── power_bi/
-│
-├── notebooks/
-│
-├── documentation/
-│   ├── data_dictionary.md
-│   ├── data_sources.md
-│   ├── data_source_inventory.md
-│   ├── data_transformation_rules.md
-│   └── sql_data_quality_report.md
-│
-├── .gitignore
-├── README.md
-└── requirements.txt
+|
+|-- data/
+|-- documentation/
+|-- notebooks/
+|-- power_bi/
+|   |-- screenshots/
+|
+|-- python/
+|   |-- cleaning/
+|   |-- data_collection/
+|
+|-- sql/
+|   |-- 00_setup/
+|   |-- 01_bronze/
+|   |-- 02_silver/
+|   |-- 03_gold/
+|   |-- 04_validation/
+|   |-- 01_database/
+|
+|-- README.md
+|-- requirements.txt
 ```
 
----
+## Data Quality & Methodology
 
-## 🔍 Data Quality & Methodology
+The project includes technical data quality checks and documentation of transformation rules.
 
-The project emphasizes transparent and documented data handling:
+Important considerations:
+- Source datasets may have different reporting scopes.
+- Demographic records may represent periodic update snapshots.
+- Population figures require their reference year and methodology to be considered.
+- Technical validation does not independently verify the underlying reported figures.
 
-- Document original data sources.
-- Preserve distinctions between different datasets.
-- Apply documented cleaning and transformation rules.
-- Perform technical data quality checks.
-- Distinguish reported figures from estimates.
-- Document assumptions and analytical limitations.
-- Avoid interpreting missing values as zero.
+## Project Limitations
 
-**Important:** Technical validation does not necessarily mean independent verification of the original reported figures.
+- Data completeness depends on the available source datasets.
+- Historical records may be revised by their original publishers.
+- Some demographic measures are subject to snapshot and reporting limitations.
+- Further source verification and automated pipeline orchestration are planned.
 
----
+## Future Improvements
 
-## 🚀 Development Roadmap
+- Automate data ingestion and refresh.
+- Expand data quality monitoring.
+- Improve pipeline orchestration.
+- Add further analytical insights.
+- Publish the Power BI report and project documentation.
 
-- [x] Project structure setup
-- [x] Python environment setup
-- [x] Data collection and cleaning scripts
-- [x] Data source documentation
-- [x] SQL Gold analytical model
-- [x] Data quality audit
-- [x] Four Power BI dashboard pages
-- [x] Git and GitHub setup
-- [ ] Add SQL scripts to repository
-- [ ] Add Power BI project file and dashboard screenshots
-- [ ] Complete end-to-end pipeline documentation
-- [ ] Final portfolio presentation
+## Author
+
+**Abdelrahman Osama Ramadan**
+
+Data Analysis | Data Engineering | Business Intelligence
 
 ---
 
-## 📚 Documentation
-
-Detailed project documentation is available in the `documentation/` directory, including:
-
-- Data Sources
-- Data Source Inventory
-- Data Dictionary
-- Data Transformation Rules
-- SQL Data Quality Report
-
----
-
-## 👨‍💻 Project Focus
-
-**Data Engineering | Data Analytics | SQL Server | Python | Power BI | Business Intelligence**
-
-Developed as a practical portfolio project demonstrating data pipeline development, analytical data modeling, and business intelligence reporting.
-
----
-
-*Turning humanitarian data into structured insights.*
+*This project is developed for educational, analytical, and portfolio purposes.*
